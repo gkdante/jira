@@ -5,17 +5,16 @@ def jqlAllIssues(jira,jql):
 	
 	block_size = 100
 	block_num = 0
+	allissues = []
 	while True:
 		start_idx = block_num*block_size
-		issues = jira.search_issues(jql, start_idx, block_size)
+		issues =jira.search_issues(jql, start_idx, block_size)
+		allissues.extend(issues)
 		if len(issues) == 0:
 			# Retrieve issues until there are no more to come
 			break
 		block_num += 1
-#		for issue in issues:
-#			allissues=log.info('%s: %s' % (issue.key, issue.fields.summary))
-
-	return issues
+	return allissues
 
 
 def issuesWithComponent(jiraconnection,component,project):

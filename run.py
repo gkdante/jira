@@ -10,8 +10,8 @@ myjira = jiralib.connect()
 
 #JQL get all issues (no limit of 50)
 
-allissues = jiralib.jqlAllIssues(myjira,'project = QB')
-print (allissues)
+allissues = jiralib.jqlAllIssues(myjira,'project = SBS and component = BackOffice')
+#print (allissues)
 
 #To replace a component on an issue
 #jiralib.replaceComponent(myjira,'QB-1','BackOffice','BO')
