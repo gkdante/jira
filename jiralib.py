@@ -25,7 +25,7 @@ def issuesWithComponent(jiraconnection,component,project):
 	return issuesfound
 
 
-def replaceComponent(jiraconnection, issueId, old, new):
+def replaceComponent(jiraconnection, issueId, old, new,commit):
 
 	issue = jiraconnection.issue(issueId)
 	
@@ -38,9 +38,10 @@ def replaceComponent(jiraconnection, issueId, old, new):
 		else:
 			currentcomponents.append({'name' : component.name})
 			#print('skipped')
-
-	issue.update(fields={"components": currentcomponents})
-			
+	if commit == True:
+		issue.update(fields={"components": currentcomponents})
+	else:
+		print(currentcomponents)		
 	#print(issue.fields.components)
 	return issue.fields.components
 
